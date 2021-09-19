@@ -22,12 +22,6 @@ struct TestView: View {
     }
 }
 
-/// A `RandomAccessCollection` of `Identifiable` that's also a
-/// `StringProtocol`, a can be used as the tokens for tokens.
-
-extension String: Identifiable {
-    public var id: String { self }
-}
 
 struct TestIdentifiableStringsView: View {
     @State var tokens: [String]

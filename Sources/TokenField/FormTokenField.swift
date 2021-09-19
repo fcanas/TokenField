@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// A token field with a label appropriate for use in a `Form`
-public struct FormTokenField<Data, Label> : View where Data: RandomAccessCollection, Data.Element: Identifiable, Label: View {
+public struct FormTokenField<Data, Label> : View where Data: RandomAccessCollection, Label: View {
     
     @Binding private var data: Data
 
@@ -33,7 +33,7 @@ public struct FormTokenField<Data, Label> : View where Data: RandomAccessCollect
     }
 }
 
-public extension FormTokenField where Data.Element: StringProtocol, Data.Element: Identifiable {
+public extension FormTokenField where Data.Element: StringProtocol {
     /// Creates a Token Field of `StringProtocol` tokens with a `ViewBuilder` for its `Form` label
     init(@ViewBuilder _ label: () -> Label, _ data: Binding<Data>) {
         self.label = label()

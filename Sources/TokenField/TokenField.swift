@@ -11,7 +11,7 @@ import OSLog
 
 fileprivate let Log = Logger(subsystem: "TokenField", category: "tokenﬁeld")
 
-public struct TokenField<Data>: View, NSViewRepresentable where Data: RandomAccessCollection, Data.Element: Identifiable {
+public struct TokenField<Data>: View, NSViewRepresentable where Data: RandomAccessCollection {
     
     @Binding private var data: Data
     
@@ -26,7 +26,7 @@ public struct TokenField<Data>: View, NSViewRepresentable where Data: RandomAcce
         Coordinator(self)
     }
     
-    public final class Coordinator<Data>: NSObject, NSTokenFieldDelegate, ObservableObject where Data: RandomAccessCollection, Data.Element: Identifiable {
+    public final class Coordinator<Data>: NSObject, NSTokenFieldDelegate, ObservableObject where Data: RandomAccessCollection {
         
         var data: Binding<Data>?
         
@@ -112,5 +112,12 @@ public struct TokenField<Data>: View, NSViewRepresentable where Data: RandomAcce
         if let b = nsView.superview?.bounds {
             nsView.frame = b
         }
+    }
+}
+
+extension TokenField where Data.Element == String {
+    public init(_ data: Binding<Data>) {
+        conversion = {$0}
+        _data = data
     }
 }
