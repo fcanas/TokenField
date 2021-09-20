@@ -96,7 +96,7 @@ public struct TokenField<Data>: View, NSViewRepresentable where Data: RandomAcce
         let tf = NSTokenField()
         tf.autoresizingMask = [.width, .height]
         tf.tokenStyle = .plainSquared
-        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.setContentHuggingPriority(.defaultLow, for: .vertical)
         
         tf.objectValue = data
         let cell = tf.cell as? NSTokenFieldCell
