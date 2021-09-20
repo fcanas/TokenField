@@ -1,6 +1,6 @@
 //
-//  FormTokenField.swift
-//  FormTokenField
+//  TokenField.swift
+//  TokenField
 //
 //  Created by Fabian Canas on 7/6/21.
 //

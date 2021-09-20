@@ -7,12 +7,13 @@
 
 import SwiftUI
 import TokenField
+import XCTest
 
-struct MyToken: Identifiable {
+struct MyToken {
     var title: String
-    var id: UUID
 }
 
+// This compiling is the test
 struct TestView: View {
     @State var tokens: [MyToken]
     var body: some View {
@@ -22,8 +23,8 @@ struct TestView: View {
     }
 }
 
-
-struct TestIdentifiableStringsView: View {
+/// This compiling is the test
+struct TestStringsView: View {
     @State var tokens: [String]
     var body: some View {
         VStack {
@@ -40,5 +41,17 @@ struct TestFormsView: View {
             FormTokenField(title:"Tokens", $tokens, { $0.title })
             FormTokenField({ Text("Tokens") }, $strings)
         }
+    }
+}
+
+class TokenFieldTests: XCTestCase {
+    func testInstatiationWithStringArray() throws {
+        _ = TokenField(.constant(Array<String>()))
+    }
+    func testInstatiationWithIntArray() throws {
+        _ = TokenField(.constant(Array<Int>()), { String($0) })
+    }
+    func testFormsView() throws {
+        _ = TestFormsView(tokens: [MyToken(title: "something")], strings: ["something else", "and more"])
     }
 }
